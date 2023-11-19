@@ -12,4 +12,11 @@ def customers(request):
     if request.method == 'GET':
         customers = Customers.objects.all()
         serializer = CustomersSerializer(customers, many=True)
-        return Response(serializer.data)
+        return Response(serializer.data) 
+    elif request.method == 'POST':
+        serializer = CustomersSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        else:
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
