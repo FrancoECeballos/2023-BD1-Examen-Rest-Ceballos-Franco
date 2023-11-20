@@ -4,5 +4,6 @@ from api import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.customers),
+    path('customers/', views.customers),
+    path('customers/<str:pk>/', views.customers_id),
 ]
