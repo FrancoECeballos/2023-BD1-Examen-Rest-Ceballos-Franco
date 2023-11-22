@@ -9,5 +9,5 @@ class CustomersService():
         try: 
             customers = Customers.objects.get(customerid = pk)
             return customers
-        except Customers.DoesNotExist():
+        except Customers.DoesNotExist:
             return Response(status=status.HTTP_404_NOT_FOUND)
