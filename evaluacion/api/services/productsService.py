@@ -6,8 +6,5 @@ class ProductsService():
     def getAll(self):
         return Products.objects.all()
     def getByID(self, pk):
-        try: 
-            products = Products.objects.get(productid = pk)
-            return products
-        except Products.DoesNotExist:
-            return Response(status=status.HTTP_404_NOT_FOUND)
+        return Products.objects.get(productid = pk)
+            

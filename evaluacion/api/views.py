@@ -38,7 +38,10 @@ def customers(request):
         
 @api_view(['GET','PUT','DELETE'])
 def customers_id(request, pk):
-    customers = CustomersService.getByID(customersServ,pk)
+    try:
+        customers = CustomersService.getByID(customersServ,pk)
+    except Customers.DoesNotExist:
+        return Response({"message":"No existe el customer"},status=status.HTTP_204_NO_CONTENT)
     if request.method == 'GET':
         serializer = CustomersSerializer(customers, many=False)
         return Response(serializer.data) 
@@ -70,7 +73,10 @@ def suppliers(request):
 
 @api_view(['GET', 'PUT', 'DELETE'])
 def suppliers_id(request, pk):
-    suppliers = SuppliersService.getByID(suppliersServ,pk)
+    try:
+        suppliers = SuppliersService.getByID(suppliersServ,pk)
+    except Suppliers.DoesNotExist:
+        return Response({"message":"No existe el supplier"},status=status.HTTP_204_NO_CONTENT)
     if request.method == 'GET':
         serializer = SuppliersSerializer(suppliers)
         return Response(serializer.data)
@@ -100,7 +106,10 @@ def categories(request):
 
 @api_view(['GET', 'PUT', 'DELETE'])
 def categories_id(request, pk):
-    categories = CategoriesService.getByID(categoriesServ,pk)
+    try:
+        categories = CategoriesService.getByID(categoriesServ,pk)
+    except Categories.DoesNotExist:
+        return Response({"message":"No existe la categoría"},status=status.HTTP_204_NO_CONTENT)
     if request.method == 'GET':
         serializer = CategoriesSerializer(categories)
         return Response(serializer.data)
@@ -130,7 +139,10 @@ def products(request):
 
 @api_view(['GET', 'PUT', 'DELETE'])
 def products_id(request, pk):
-    products = ProductsService.getByID(productsServ,pk)
+    try:
+        products = ProductsService.getByID(productsServ,pk)
+    except Products.DoesNotExist:
+        return Response({"message":"No existe el product"},status=status.HTTP_204_NO_CONTENT)
     if request.method == 'GET':
         serializer = ProductsSerializer(products)
         return Response(serializer.data)
@@ -160,7 +172,10 @@ def orders(request):
 
 @api_view(['GET', 'PUT', 'DELETE'])
 def orders_id(request, pk):
-    orders = OrdersService.getByID(ordersServ,pk)
+    try:
+        orders = OrdersService.getByID(ordersServ,pk)
+    except Orders.DoesNotExist:
+        return Response({"message":"No existe la orden"},status=status.HTTP_204_NO_CONTENT)
     if request.method == 'GET':
         serializer = OrdersSerializer(orders)
         return Response(serializer.data)
@@ -190,7 +205,10 @@ def orderDetails(request):
 
 @api_view(['GET', 'PUT', 'DELETE'])
 def orderDetails_id(request, pk1, pk2):
-    orderDetail = OrderDetailsService.getByID(orderDetailsServ, pk1, pk2)
+    try:
+        orderDetail = OrderDetailsService.getByID(orderDetailsServ, pk1, pk2)
+    except Orderdetails.DoesNotExist:
+        return Response({"message":"No existe el detalle de orden"},status=status.HTTP_204_NO_CONTENT)
     if request.method == 'GET':
         serializer = OrderDetailsSerializer(orderDetail)
         return Response(serializer.data)
@@ -220,7 +238,10 @@ def employees(request):
 
 @api_view(['GET', 'PUT', 'DELETE'])
 def employees_id(request, pk):
-    employees = EmployeesService.getByID(employeesServ,pk)
+    try:
+        employees = EmployeesService.getByID(employeesServ,pk)
+    except Employees.DoesNotExist:
+        return Response({"message":"No existe el employee"},status=status.HTTP_204_NO_CONTENT)
     if request.method == 'GET':
         serializer = EmployeesSerializer(employees)
         return Response(serializer.data)

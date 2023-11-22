@@ -6,8 +6,5 @@ class SuppliersService():
     def getAll(self):
         return Suppliers.objects.all()
     def getByID(self, pk):
-        try: 
-            suppliers = Suppliers.objects.get(supplierid = pk)
-            return suppliers
-        except Suppliers.DoesNotExist:
-            return Response(status=status.HTTP_404_NOT_FOUND)
+        return Suppliers.objects.get(supplierid = pk)
+        

@@ -6,8 +6,5 @@ class CategoriesService():
     def getAll(self):
         return Categories.objects.all()
     def getByID(self, pk):
-        try: 
-            categories = Categories.objects.get(categoryid = pk)
-            return categories
-        except Categories.DoesNotExist:
-            return Response(status=status.HTTP_404_NOT_FOUND)
+        return Categories.objects.get(categoryid = pk)
+        
