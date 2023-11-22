@@ -189,8 +189,8 @@ def orderDetails(request):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 @api_view(['GET', 'PUT', 'DELETE'])
-def orderDetails_id(request, pk):
-    orderDetail = OrderDetailsService.getByID(orderDetailsServ,pk)
+def orderDetails_id(request, pk1, pk2):
+    orderDetail = OrderDetailsService.getByID(orderDetailsServ, pk1, pk2)
     if request.method == 'GET':
         serializer = OrderDetailsSerializer(orderDetail)
         return Response(serializer.data)
