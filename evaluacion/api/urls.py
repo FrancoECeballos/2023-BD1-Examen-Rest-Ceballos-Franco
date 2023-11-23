@@ -19,4 +19,7 @@ urlpatterns = [
     path('suppliers/<int:pk>/', views.suppliers_id),
     path('products/', views.products),
     path('products/<int:pk>/', views.products_id),
+    #Evaluación
+    path('punto1/products', views.punto1),
+    path('punto2/orders', views.punto2)
 ]

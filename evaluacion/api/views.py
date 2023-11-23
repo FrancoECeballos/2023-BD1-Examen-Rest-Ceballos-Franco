@@ -267,7 +267,7 @@ def employees_id(request, pk):
         employees.delete()
         return Response(status=status.HTTP_200_OK)
 
-
+#FILTROS de Ejemplo
 
 @api_view(['GET'])
 def fechaMayor(request):
@@ -316,3 +316,34 @@ def ordenadoAlReves(request):
     customers = Customers.objects.all().order_by('-contactname')
     serializer = CustomersSerializer(customers, many=True)
     return Response(serializer.data)
+
+#Examen
+
+@api_view(['GET'])
+def punto1(request):
+    supid = request.query_params.get('supplierid')
+    catid = request.query_params.get('categoryid')
+    stock = request.query_params.get('stockmin')
+    if request.method == 'GET':
+        try:
+            suppliers = SuppliersService.getByID(suppliersServ,supid)
+            categories = CategoriesService.getByID(categoriesServ,catid)
+            products = ProductsService.punto1(productsServ,supid,catid,stock)
+            if products == []:
+                return Response({"message":"No se encuentra el producto"},status=status.HTTP_204_NO_CONTENT)
+            else:
+                return Response(products,status=status.HTTP_200_OK)
+            
+        except Categories.DoesNotExist:
+            return Response({"message":"No existen la categoria ingresada"},status=status.HTTP_404_NOT_FOUND)
+        except Suppliers.DoesNotExist:
+            return Response({"message":"No existen el supplier ingresado"},status=status.HTTP_404_NOT_FOUND)       
+
+
+
+@api_view(['POST'])
+def punto2(request, id, stock):
+    if request.method == 'POST':
+        orderDetail = OrderDetailsService.punto2(orderDetailsServ,id,stock)
+        serializer = Punto2Serializer(products, many=True)
+        return Response(serializer.data)
