@@ -28,6 +28,8 @@ class CategoriesSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class ProductsSerializer(serializers.ModelSerializer):
+    categoryid = CategoriesSerializer(many = False)
+    supplierid = SuppliersSerializer(many = False)
     class Meta:
         model = Products
         fields = '__all__'
@@ -51,3 +53,7 @@ class OrderDetailsSerializer(serializers.ModelSerializer):
     class Meta:
         model = Orderdetails
         fields = '__all__'
+
+class CustomerdemographicsSerializer(serializers.Serializer):
+    customertypeid = serializers.CharField()
+    customerdesc = serializers.CharField()

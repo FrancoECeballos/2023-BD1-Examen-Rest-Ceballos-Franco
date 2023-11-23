@@ -69,7 +69,8 @@ def suppliers(request):
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        else:
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 @api_view(['GET', 'PUT', 'DELETE'])
 def suppliers_id(request, pk):
@@ -84,11 +85,12 @@ def suppliers_id(request, pk):
         serializer = SuppliersSerializer(suppliers, data=request.data)
         if serializer.is_valid():
             serializer.save()
-            return Response(serializer.data)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        else:
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     elif request.method == 'DELETE':
         suppliers.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
+        return Response(status=status.HTTP_200_OK)
     
 
 @api_view(['GET', 'POST'])
@@ -102,7 +104,8 @@ def categories(request):
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        else:
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 @api_view(['GET', 'PUT', 'DELETE'])
 def categories_id(request, pk):
@@ -117,11 +120,12 @@ def categories_id(request, pk):
         serializer = CategoriesSerializer(categories, data=request.data)
         if serializer.is_valid():
             serializer.save()
-            return Response(serializer.data)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        else:
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     elif request.method == 'DELETE':
         categories.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
+        return Response(status=status.HTTP_200_OK)
     
 
 @api_view(['GET', 'POST'])
@@ -135,7 +139,8 @@ def products(request):
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        else:
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 @api_view(['GET', 'PUT', 'DELETE'])
 def products_id(request, pk):
@@ -150,11 +155,12 @@ def products_id(request, pk):
         serializer = ProductsSerializer(products, data=request.data)
         if serializer.is_valid():
             serializer.save()
-            return Response(serializer.data)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        else:
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     elif request.method == 'DELETE':
         products.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
+        return Response(status=status.HTTP_200_OK)
     
 
 @api_view(['GET', 'POST'])
@@ -168,7 +174,8 @@ def orders(request):
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        else:
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 @api_view(['GET', 'PUT', 'DELETE'])
 def orders_id(request, pk):
@@ -183,11 +190,12 @@ def orders_id(request, pk):
         serializer = OrdersSerializer(orders, data=request.data)
         if serializer.is_valid():
             serializer.save()
-            return Response(serializer.data)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        else:
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     elif request.method == 'DELETE':
         orders.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
+        return Response(status=status.HTTP_200_OK)
     
 
 @api_view(['GET', 'POST'])
@@ -201,7 +209,8 @@ def orderDetails(request):
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        else:
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 @api_view(['GET', 'PUT', 'DELETE'])
 def orderDetails_id(request, pk1, pk2):
@@ -216,11 +225,12 @@ def orderDetails_id(request, pk1, pk2):
         serializer = OrderDetailsSerializer(orderDetail, data=request.data)
         if serializer.is_valid():
             serializer.save()
-            return Response(serializer.data)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        else:
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     elif request.method == 'DELETE':
         orderDetail.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
+        return Response(status=status.HTTP_200_OK)
     
 
 @api_view(['GET', 'POST'])
@@ -234,7 +244,8 @@ def employees(request):
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        else:
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 @api_view(['GET', 'PUT', 'DELETE'])
 def employees_id(request, pk):
@@ -249,8 +260,59 @@ def employees_id(request, pk):
         serializer = EmployeesSerializer(employees, data=request.data)
         if serializer.is_valid():
             serializer.save()
-            return Response(serializer.data)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        else:
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)  
     elif request.method == 'DELETE':
         employees.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
+        return Response(status=status.HTTP_200_OK)
+
+
+
+@api_view(['GET'])
+def fechaMayor(request):
+    orders = Orders.objects.filter(orderdate__gt="1996-12-24")
+    serializer = OrdersSerializer(orders, many=True)
+    return Response(serializer.data)
+
+@api_view(['GET'])
+def fechaMenor(request):
+    orders = Orders.objects.filter(orderdate__lt="1996-12-24")
+    serializer = OrdersSerializer(orders, many=True)
+    return Response(serializer.data)
+
+@api_view(['GET'])
+def fechaRango(request):
+    orders = Orders.objects.filter(orderdate__range=("1996-12-24","1997-1-1"))
+    serializer = OrdersSerializer(orders, many=True)
+    return Response(serializer.data)
+
+@api_view(['GET','POST'])
+def empiezaCon(request):
+    if request.method == 'GET':    
+        customers = Customers.objects.filter(contactname__startswith="A")
+        serializer = CustomersSerializer(customers, many=True)
+        return Response(serializer.data)
+    elif request.method == 'POST':
+        letra = request.query_params.get('letra')
+        customers = Customers.objects.filter(contactname__startswith=letra)
+        serializer = CustomersSerializer(customers, many=True)
+        return Response(serializer.data)
+
+@api_view(['GET'])
+def terminaCon(request):
+    customers = Customers.objects.filter(contactname__endswith="a")
+    serializer = CustomersSerializer(customers, many=True)
+    return Response(serializer.data)
+
+@api_view(['GET'])
+def ordenado(request):
+    customers = Customers.objects.all().order_by('contactname')
+    serializer = CustomersSerializer(customers, many=True)
+    return Response(serializer.data)
+
+@api_view(['GET'])
+def ordenadoAlReves(request):
+    customers = Customers.objects.all().order_by('-contactname')
+    serializer = CustomersSerializer(customers, many=True)
+    return Response(serializer.data)

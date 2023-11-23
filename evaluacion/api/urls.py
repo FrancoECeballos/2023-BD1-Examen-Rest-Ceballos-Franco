@@ -3,6 +3,7 @@ from django.urls import path, include
 from api import views
 
 urlpatterns = [
+    path('', views.empiezaCon),
     path('admin/', admin.site.urls),
     path('customers/', views.customers),
     path('customers/<str:pk>/', views.customers_id),
